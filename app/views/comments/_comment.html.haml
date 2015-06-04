@@ -7,4 +7,4 @@
         %p= comment.comment
         
         %p.pull-right
-            %em= comment.created_at.to_s.to_time.strftime('%B %e %Y a las %l:%M %p')
+            %em= I18n.localize(comment.created_at.to_s.to_time, :format => '%e de %B del %Y a las %l:%M %p')

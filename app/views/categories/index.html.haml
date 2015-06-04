@@ -4,7 +4,7 @@
             .panel-body
                 .row
                     .col-md-12
-                        %h3 Categorias
+                        %h3 Categorías
                         
                         - if @categories.empty?
                             %h3.text-center.small No hay categorias
@@ -29,7 +29,7 @@
                         %hr
     
                         .row.text-center
-                            = link_to "Crear Nueva Categoria", new_category_path, class: 'btn btn-primary btn-sm'
+                            = link_to "Crear Nueva Categoría", new_category_path, class: 'btn btn-primary btn-sm'
                         
                         = link_to qp2_path do
                             %span.glyphicon.glyphicon-arrow-left

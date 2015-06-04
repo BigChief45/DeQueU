@@ -10,17 +10,17 @@
         
     
     .form-group
-        = f.label :title
+        = f.label :title, 'Título:'
         %br
         = f.text_field :title, class: 'form-control input-sm'
         
     .form-group
-        = f.label :description
+        = f.label :description, 'Descripción'
         %br
         = f.text_area :description, rows: '10', class: 'form-control'
     
     .form-group
-        = f.label 'Categoria'
+        = f.label 'Categoría'
         %br
         = f.collection_select(:category_id, Category.all, :id, :name, {}, { class: 'form-control input-sm'})
         

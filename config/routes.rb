@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
        get 'users/:username' => 'users#show' 
     end
+    
+    resources :favorite_stories, only: [:create, :destroy]
   
     root 'home#index'
 end

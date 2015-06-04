@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   
+  has_many :favorites
+  has_many :favorite_stories, through: :favorites, source: :favorited, source_type: 'Story'
+  
 end

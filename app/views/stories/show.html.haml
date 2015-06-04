@@ -7,7 +7,8 @@
                 %p
                     %em
                         Posteado el
-                        %b= @story.created_at.to_s.to_time.strftime('%B %e %Y a las %l:%M %p')
+                        /%b= @story.created_at.to_s.to_time.strftime('%B %e %Y a las %l:%M %p')
+                        %b= I18n.localize( @story.created_at.to_s.to_time, :format => '%e de %B del %Y a las %l:%M %p')
                         por
                         %b
                             = link_to @story.user.username, user_path(@story.user.username)
@@ -30,11 +31,15 @@
                             = link_to like_story_path(@story), method: :put, :class => 'has-tooltip btn btn-default', "data-toggle" => "tooltip", "data-placement" => "bottom", :title => "Me gusta!" do
                                 %span.glyphicon.glyphicon-heart
                                 = @story.get_upvotes.size
-                                    
-                            = link_to root_path, method: :put, class: 'btn btn-default' do
-                                %span.glyphicon.glyphicon-star
-                                Agregar a Favoritos
-                
+                            
+                            - unless current_user.favorite_stories.exists?(id: @story.id)        
+                                = link_to favorite_stories_path(story_id: @story), method: :post, class: 'btn btn-default' do
+                                    %span.glyphicon.glyphicon-star
+                                    Agregar a Favoritos
+                            - else
+                                = link_to favorite_story_path(@story), method: :delete, class: 'btn btn-danger' do
+                                    %span.glyphicon.glyphicon-star
+                                    Eliminar de Favoritos
                 %hr
                 
                 %h3 Comentarios

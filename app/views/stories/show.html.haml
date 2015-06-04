@@ -42,13 +42,14 @@
                                     Eliminar de Favoritos
                 %hr
                 
-                %h3 Comentarios
+                %h3= pluralize(@story.comments.count, 'Comentario', 'Comentarios')
+                    
                 
                 - if ( can? :create, Comment )
                     / Comment form
                     = form_for [@story, Comment.new] do |f|
                         .form-group
-                            = f.label 'Agrega tu comentario'
+                            = f.label 'Agrega tu comentario:'
                             %br
                             = f.text_area :comment, rows: '3', class: 'form-control'
                             %br

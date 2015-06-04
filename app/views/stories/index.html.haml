@@ -5,14 +5,16 @@
                 
                 .row
                     .col-md-2
-                        %h3 Categorias
+                        %h3 Categorías
                         
                         %ul.list-group
                             = link_to qp2_path(category: "Todos"), class: 'list-group-item' do
-                                %span.glyphicon.glyphicon-pencil
+                                %span.glyphicon.glyphicon-align-justify
                                 Todos
                             - @categories.each do |c|
-                                = link_to c.name, qp2_path(category: c.name), class: 'list-group-item'
+                                = link_to qp2_path(category: c.name), class: 'list-group-item' do
+                                    %span{ class: "glyphicon glyphicon-#{c.glyphicon}" } 
+                                    = c.name
                         
                         - if ( can? :manage, :categories )
                             .row.text-center

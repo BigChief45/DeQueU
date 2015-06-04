@@ -1,6 +1,32 @@
-.row.img-rounded
-    .col-md-12
+.panel.-panel-default
+    .panel-body
         .row
-            / = image_tag 'dcard_banner.svg'
-        .row
+            .col-md-3
+                = image_tag 'discussion2.png'
+            .col-md-8
+                %br
+                %h2 La comunidad online más activa de Honduras
+                
+                %p Únete y ayuda a formar la comunidad online más activa de Honduras y forma parte de discusiones que abarcan todo tipo de temas. 
+                %p Escribe, comparte y lee historias y experiencias escritas por otros hondureños y comenta tus opiniones sobre ellas.
             
+        %hr    
+                
+        .row
+            .col-md-8
+                %br
+                %h2 Una Comunidad anónima y segura
+                
+                %p Siéntete seguro navegando y participando en la comunidad. Lo único que los demás usuarios pueden ver es el usuario que tu escogiste al registrarte, y tu género.
+                %p Datos como tu correo electrónico no son mostrados al público ni serán divulgados.
+                
+            .col-md-3
+                = image_tag 'secure.png'
+        
+        %hr
+        
+        .row.text-center
+            .col-md-6.col-md-offset-3
+                %p.lead ¿Que esperas? Únete a la comunidad ya!
+                
+                = link_to 'Registrarse', registro_path, class: 'btn btn-success btn-lg btn-block'

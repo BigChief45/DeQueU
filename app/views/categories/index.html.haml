@@ -16,12 +16,14 @@
                                         %tr
                                             %th.text-center #
                                             %th.text-center Nombre
+                                            %th.text-center Glyphicon
                                             %th.text-center Opciones
                                     %tbody
                                         - @categories.each_with_index do |c, i|
                                             %tr
                                                 %td.text-center= "#{i+1}"
                                                 %td.text-center= c.name
+                                                %td.text-center= c.glyphicon
                                                 %td.text-center
                                                     = link_to "Editar", edit_category_path(c), class: 'btn btn-warning btn-xs'
                                                     = link_to "Eliminar", category_path(c), method: :delete, class: 'btn btn-danger btn-xs'

@@ -1,0 +1,71 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.-panel-default
+            .panel-body
+                %h3= @story.title
+                
+                %p
+                    %em
+                        Posteado el
+                        %b= @story.created_at.to_s.to_time.strftime('%B %e %Y a las %l:%M %p')
+                        por
+                        %b
+                            = link_to @story.user.username, user_path(@story.user.username)
+                %hr
+                
+                %p
+                    =simple_format h @story.description
+
+                - if ( can? :edit, @story )
+                    .row.text-center
+                        = link_to edit_story_path(@story) do
+                            %span.glyphicon.glyphicon-pencil
+                            Editar mi Historia
+                
+                %br
+                    
+                - if user_signed_in?
+                    .row.text-center
+                        .btn-group
+                            = link_to like_story_path(@story), method: :put, :class => 'has-tooltip btn btn-default', "data-toggle" => "tooltip", "data-placement" => "bottom", :title => "Me gusta!" do
+                                %span.glyphicon.glyphicon-heart
+                                = @story.get_upvotes.size
+                                    
+                            = link_to root_path, method: :put, class: 'btn btn-default' do
+                                %span.glyphicon.glyphicon-star
+                                Agregar a Favoritos
+                
+                %hr
+                
+                %h3 Comentarios
+                
+                - if ( can? :create, Comment )
+                    / Comment form
+                    = form_for [@story, Comment.new] do |f|
+                        .form-group
+                            = f.label 'Agrega tu comentario'
+                            %br
+                            = f.text_area :comment, rows: '3', class: 'form-control'
+                            %br
+                            = f.submit 'Agregar Comentario', class: 'btn btn-primary'
+                
+                        %hr
+
+                / List of comments
+                #comments
+                    = render :partial => @comments
+
+                    / Pagination
+                    .row.text-center
+                        = will_paginate @comments, renderer: BootstrapPagination::Rails
+
+                %hr
+
+                = link_to qp2_path do
+                    %span.glyphicon.glyphicon-arrow-left
+                    Regresar
+                    
+:javascript
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })

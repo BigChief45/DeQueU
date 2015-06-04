@@ -1,0 +1,37 @@
+.col-md-8.col-md-offset-2
+    .row
+        .panel.-panel-default
+            .panel-body
+                .row
+                    .col-md-12
+                        %h3 Categorias
+                        
+                        - if @categories.empty?
+                            %h3.text-center.small No hay categorias
+                        - else
+                            / Show all categories
+                            .table-responsive
+                                %table.table.table-striped.table-hover
+                                    %thead
+                                        %tr
+                                            %th.text-center #
+                                            %th.text-center Nombre
+                                            %th.text-center Opciones
+                                    %tbody
+                                        - @categories.each_with_index do |c, i|
+                                            %tr
+                                                %td.text-center= "#{i+1}"
+                                                %td.text-center= c.name
+                                                %td.text-center
+                                                    = link_to "Editar", edit_category_path(c), class: 'btn btn-warning btn-xs'
+                                                    = link_to "Eliminar", category_path(c), method: :delete, class: 'btn btn-danger btn-xs'
+        
+                        %hr
+    
+                        .row.text-center
+                            = link_to "Crear Nueva Categoria", new_category_path, class: 'btn btn-primary btn-sm'
+                        
+                        = link_to qp2_path do
+                            %span.glyphicon.glyphicon-arrow-left
+                            Regresar
+                

@@ -1,0 +1,8 @@
+= search_form_for @q, :html => { class: 'form-inline' } do |f|
+
+    .form-group
+        = f.search_field :title_cont, placeholder: 'Buscar...', class: 'form-control input-sm'
+    
+    = button_tag(type: 'submit', class: 'btn btn-primary btn-sm') do
+        %span.glyphicon.glyphicon-search
+        Buscar

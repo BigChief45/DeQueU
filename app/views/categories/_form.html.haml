@@ -1,0 +1,17 @@
+= form_for @category do |f|
+
+    - if @category.errors.any?
+        .alert.alert-danger
+            %h4
+                %strong Porfavor corrija los siguientes errores:
+            %ul
+                - @category.errors.full_messages.each do |message|
+                    %li= message
+
+    .form-group
+        = f.label :name
+        %br
+        = f.text_field :name, class: 'form-control'
+        
+    .form-group
+        = f.submit ( f.object.new_record? ? "Crear Categoria" : "Guardar Cambios"), class: 'btn btn-primary'

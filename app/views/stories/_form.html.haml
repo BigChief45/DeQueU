@@ -1,0 +1,28 @@
+= form_for (@story) do |f|
+    
+    - if @story.errors.any?
+        .alert.alert-danger
+            %h4
+                %strong Porfavor corrija los siguientes errores:
+            %ul
+                - @story.errors.full_messages.each do |message|
+                    %li= message
+        
+    
+    .form-group
+        = f.label :title
+        %br
+        = f.text_field :title, class: 'form-control input-sm'
+        
+    .form-group
+        = f.label :description
+        %br
+        = f.text_area :description, rows: '10', class: 'form-control'
+    
+    .form-group
+        = f.label 'Categoria'
+        %br
+        = f.collection_select(:category_id, Category.all, :id, :name, {}, { class: 'form-control input-sm'})
+        
+    .form-group
+        = f.submit ( f.object.new_record? ? "Postear Historia" : "Guardar Cambios"), class: 'btn btn-success'

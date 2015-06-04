@@ -8,7 +8,9 @@
                         %h3 Categorias
                         
                         %ul.list-group
-                            = link_to "Todos", qp2_path(category: "Todos"), class: 'list-group-item'
+                            = link_to qp2_path(category: "Todos"), class: 'list-group-item' do
+                                %span.glyphicon.glyphicon-pencil
+                                Todos
                             - @categories.each do |c|
                                 = link_to c.name, qp2_path(category: c.name), class: 'list-group-item'
                         

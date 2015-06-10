@@ -1,6 +1,6 @@
 .col-md-10.col-md-offset-1
     .row
-        .panel.-panel-default
+        .panel.panel-default
             .panel-body
                 %h3= @story.title
                 
@@ -21,7 +21,13 @@
                     .row.text-center
                         = link_to edit_story_path(@story) do
                             %span.glyphicon.glyphicon-pencil
-                            Editar mi Historia
+                            Editar Historia
+                            
+                        - if ( can? :destroy, @story )
+                            | 
+                            = link_to story_path(@story), method: :delete do
+                                %span.glyphicon.glyphicon-trash
+                                Eliminar Historia
                 
                 %br
                     
@@ -37,8 +43,8 @@
                                     %span.glyphicon.glyphicon-star
                                     Agregar a Favoritos
                             - else
-                                = link_to favorite_story_path(@story), method: :delete, class: 'btn btn-danger' do
-                                    %span.glyphicon.glyphicon-star
+                                = link_to favorite_story_path(@story), method: :destroy, class: 'btn btn-danger' do
+                                    %span.glyphicon.glyphicon-remove
                                     Eliminar de Favoritos
                 %hr
                 

@@ -6,20 +6,30 @@ class StoriesController < ApplicationController
     load_and_authorize_resource param_method: :story_params
     
     def index
+        @categories = Category.all
+        
         #Ransack
         @q = Story.ransack(params[:q])
         
+        # Category Sort and Order
         if ( params[:category].blank? || params[:category] == "Todos" )
-            @stories = @q.result(distinct: true).order("created_at DESC")
+            if params[:sort].present?
+                @stories = @q.result(distinct: true).order("cached_votes_up DESC")
+            else
+                @stories = @q.result(distinct: true).order("created_at DESC")
+            end
         else
             @category_id = Category.find_by(name: params[:category]).id
-            @stories = Story.where(category_id: @category_id)
+            if params[:sort].present?
+                @stories = Story.where(category_id: @category_id).order("cached_votes_up DESC")
+            else
+                @stories = Story.where(category_id: @category_id).order("created_at DESC")
+            end
         end
         
         # Pagination
         @stories = @stories.paginate(:page => params[:page], :per_page => 20)
         
-        @categories = Category.all
     end
     
     def new
@@ -62,7 +72,11 @@ class StoriesController < ApplicationController
     end
     
     def destroy
-        
+        respond_to do |format|
+            @story.destroy
+            format.html { redirect_to qp2_path, :flash => { :success => 'La historia fue eliminada exitosamente.' } }
+            format.json { redirect_to qp2_path, status: :destroyed, location: @story }
+        end
     end
     
     def upvote

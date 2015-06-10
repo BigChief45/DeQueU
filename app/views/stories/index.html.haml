@@ -13,7 +13,7 @@
                                 Todos
                             - @categories.each do |c|
                                 = link_to qp2_path(category: c.name), class: 'list-group-item' do
-                                    %span{ class: "glyphicon glyphicon-#{c.glyphicon}" } 
+                                    %span{ class: "#{c.glyphicon}" } 
                                     = c.name
                         
                         - if ( can? :manage, :categories )
@@ -39,7 +39,7 @@
                                         - if (can? :create, Story)
                                             = link_to new_story_path, class: 'btn btn-success btn-sm' do
                                                 %span.glyphicon.glyphicon-pencil
-                                                Postear Historia
+                                                Publicar Historia
                                     
                                         .btn-group.btn-group-sm.pull-right
                                             = link_to qp2_path(category: params[:category], sort: 'popular'), class: "btn btn-default #{'active' if params[:sort].present? }" do

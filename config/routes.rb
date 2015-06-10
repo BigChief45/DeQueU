@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
   
     get 'qp2', to: 'stories#index'
+    get 'my_stories', to: 'stories#my_stories'
     
     resources :stories do
        member do
@@ -19,10 +20,10 @@ Rails.application.routes.draw do
     
     resources :categories
     resources :users, only: [:show] do
-       get 'users/:username' => 'users#show' 
+       get 'users/:username' => 'users#show'
     end
     
-    resources :favorite_stories, only: [:create, :destroy]
+    resources :favorite_stories, only: [:index, :create, :destroy]
   
     root 'home#index'
 end

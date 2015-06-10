@@ -32,6 +32,11 @@ class StoriesController < ApplicationController
         
     end
     
+    def my_stories
+       @my_stories = current_user.stories 
+    end
+    
+    
     def new
         @story = current_user.stories.build
     end

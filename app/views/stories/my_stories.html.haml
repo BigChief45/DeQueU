@@ -1,0 +1,36 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.panel-default
+            .panel-body
+                %h3 Mis Historias
+                
+                - if @my_stories.empty?
+                    %p.text-center 
+                        Aun no has publicado historias.
+                        = link_to 'Publica una ya!', new_story_path
+                    
+                - else
+                    .table-responsive
+                        %table.table.table-striped.table-hover
+                            %thead
+                                %tr
+                                    %th.text-center Título
+                                    %th.text-center Autor
+                                    %th.text-center Categoría
+                                    %th.text-center Fecha
+                                    %th.text-center
+                                        %span.glyphicon.glyphicon-heart
+                                    %th.text-center
+                                        %span.glyphicon.glyphicon-comment
+                            %tbody
+                                - @my_stories.each do |story|
+                                    %tr
+                                        %td.text-center
+                                            = link_to truncate(story.title, :length => 30), story
+                                        %td.text-center= story.user.username
+                                        %td.text-center= Category.find(story.category_id).name
+                                        %td.text-center
+                                            Hace
+                                            =time_ago_in_words(story.created_at)
+                                        %td.text-center= story.get_upvotes.size
+                                        %td.text-center= story.comments.count

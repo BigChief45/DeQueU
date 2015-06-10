@@ -25,4 +25,4 @@
         = f.collection_select(:category_id, Category.all, :id, :name, {}, { class: 'form-control input-sm'})
         
     .form-group
-        = f.submit ( f.object.new_record? ? "Postear Historia" : "Guardar Cambios"), class: 'btn btn-success'
+        = f.submit ( f.object.new_record? ? "Publicar Historia" : "Guardar Cambios"), class: 'btn btn-success'

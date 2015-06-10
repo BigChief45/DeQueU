@@ -1,6 +1,10 @@
 class FavoriteStoriesController < ApplicationController
     
-    before_action :find_story
+    before_action :find_story, only: [:create, :destroy]
+    
+    def index
+        @favorites = current_user.favorite_stories
+    end
   
     def create
         respond_to do |format|

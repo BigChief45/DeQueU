@@ -16,6 +16,7 @@ es:
       unconfirmed: 'Debe confirmar su cuenta para continuar'
       locked: 'Su cuenta está bloqueada'
       invalid: 'Correo o contraseña inválidos'
+      not_found_in_database: "%{authentication_keys} o contraseña son invalidos."
       invalid_token: 'Ficha de autenticación invalida'
       timeout: 'Su sesión ha expirado, por favor ingrese nuevamente para continuar'
       inactive: 'Su cuenta aún no ha sido activada'

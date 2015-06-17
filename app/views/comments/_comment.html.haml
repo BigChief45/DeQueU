@@ -1,9 +1,10 @@
 .media
     .media-left.media-top
-        = link_to (image_tag "#{comment.user.gender}.png"), user_path(comment.user.username), { class: 'media-object img-circle' }
+        = image_tag "#{comment.user.gender}.png", class: 'media-object img-circle'
     .media-body
         %h4.media-heading
-            = link_to comment.user.username, user_path(comment.user.username)
+            = comment.user.username
+            
         %p= comment.comment
         
         %p.pull-right

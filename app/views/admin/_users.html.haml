@@ -1,0 +1,14 @@
+/ Show all users
+.table-responsive
+    %table.table.table-striped.table-hover
+        %thead
+            %tr
+                %th.text-center Usuario
+                %th.text-center E-Mail
+                %th.text-center Fecha Registro
+        %tbody
+            - @users.each do |user|
+                %tr
+                    %td.text-center= user.username
+                    %td.text-center= user.email
+                    %td.text-center= user.created_at

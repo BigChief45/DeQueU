@@ -38,7 +38,15 @@
                                 = link_to favorite_stories_path do
                                     %span.glyphicon.glyphicon-star
                                     Mis Favoritos
+                            
+                            - if current_user.admin?
+                                %li
+                                    = link_to admin_path do
+                                        %span.glyphicon.glyphicon-king
+                                        Admin Panel
+                                    
                             %li.divider
+                            
                             %li
                                 = link_to logout_path, method: :delete do
                                     %span.glyphicon.glyphicon-off

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
     get 'qp2', to: 'stories#index'
     get 'my_stories', to: 'stories#my_stories'
+    get 'admin', to: 'admin#index'
     
     resources :stories do
        member do
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
     end
     
     resources :favorite_stories, only: [:index, :create, :destroy]
+  
+    resources :admins, only: [:index]
   
     root 'home#index'
 end

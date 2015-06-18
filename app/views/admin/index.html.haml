@@ -1,0 +1,22 @@
+.col-md-8.col-md-offset-2
+    .row
+        .panel.panel-default
+            .panel-body
+                
+                %h3.text-center Panel de Administrador
+                
+                %ul.nav.nav-tabs
+                    %li.active
+                        = link_to "Usuarios", "#users", "data-toggle" => "tab"
+                    %li
+                        = link_to "Categorias", "#categories", "data-toggle" => "tab"
+                        
+                / Tab Contents
+                .tab-content
+                    %br
+                    .tab-pane.fade.active.in{ :id => "users" }
+                        = render 'users'
+                                
+                    .tab-pane.fade{ :id => "categories" }
+                        %p.text-center
+                            = link_to "Manejar Categorias", categories_path

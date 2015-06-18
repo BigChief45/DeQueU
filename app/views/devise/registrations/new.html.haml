@@ -7,6 +7,11 @@
                 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                     = devise_error_messages!
                     
+                    .alert.alert-warning
+                        %p.text-center
+                            %span.glyphicon.glyphicon-warning-sign
+                            Escoge un usuario con el cual puedas mantener tu anonimato.
+                    
                     .form-group
                         = f.label :username, 'Usuario'
                         %br
@@ -39,8 +44,9 @@
                     
                     .alert.alert-warning
                         %p.text-center
+                            %span.glyphicon.glyphicon-exclamation-sign
                             %strong NOTA:
-                            Tus datos estarán protegidos y no serán divulgados a ninguna entidad.
+                            Tus datos estarán protegidos y no serán divulgados a nadie.
                     
                     .form-group
                         = f.submit "Registrarse", class: 'form-control btn btn-success'

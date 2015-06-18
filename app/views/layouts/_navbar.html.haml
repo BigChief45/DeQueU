@@ -25,11 +25,24 @@
                             %strong= current_user.username 
                             %span.caret
                         %ul{:class => 'dropdown-menu', :role => 'menu' }
-                            %li= link_to "Mi Cuenta", edit_user_registration_path
-                            %li= link_to "Mis Historias", my_stories_path
-                            %li= link_to "Mis Favoritos", favorite_stories_path 
+                            %li
+                                = link_to edit_user_registration_path do
+                                    %span.glyphicon.glyphicon-cog
+                                    Mi Cuenta
+                            %li
+                                = link_to my_stories_path do
+                                    %span.glyphicon.glyphicon-book
+                                    Mis Historias
+                                    
+                            %li
+                                = link_to favorite_stories_path do
+                                    %span.glyphicon.glyphicon-star
+                                    Mis Favoritos
                             %li.divider
-                            %li= link_to "Salir", logout_path, method: :delete
+                            %li
+                                = link_to logout_path, method: :delete do
+                                    %span.glyphicon.glyphicon-off
+                                    Salir
                 - else
                     %li
                         = link_to "Registrarse", registro_path
